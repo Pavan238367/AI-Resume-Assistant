@@ -1,0 +1,13 @@
+venv/
+__pycache__/
+*.pyc
+
+resume_history.db
+
+uploads/
+
+resume_analysis.pdf
+
+.env
+
+.vscode/

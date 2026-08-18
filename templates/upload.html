@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}
+AI Resume Analyzer
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1>📄 Analyze Your Resume</h1>
+    {% if error %}
+
+    <div class="error-message">
+
+        {{ error }}
+
+    </div>
+
+{% endif %}
+
+    <p>
+        Upload your resume and enter the job description
+        to get a detailed AI-powered analysis.
+    </p>
+
+    <hr>
+
+
+    <!-- Resume Upload Card -->
+
+    <div class="card">
+
+        <h2>📄 Upload Resume</h2>
+
+        <p>
+            Upload your resume in PDF format.
+        </p>
+
+        <form action="/upload"
+              method="POST"
+              enctype="multipart/form-data">
+
+            <input
+                type="file"
+                name="resume"
+                accept=".pdf"
+                required>
+
+            <p class="upload-info">
+                📌 Only PDF files are allowed.
+                Maximum size: 5 MB.
+            </p>
+
+
+            <!-- Job Description -->
+
+            <h2>💼 Job Description</h2>
+
+            <p>
+                Paste the job description below.
+            </p>
+
+            <textarea
+                name="job_description"
+                rows="12"
+                placeholder="Paste the job description here..."
+                required></textarea>
+
+
+            <br>
+            <br>
+
+
+            <!-- Analyze Button -->
+
+            <button type="submit">
+                🔍 Analyze Resume
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <hr>
+
+
+    <!-- Features -->
+
+    <div class="card">
+
+        <h2>✨ What You'll Get</h2>
+
+        <ul>
+
+            <li>⭐ Resume Score</li>
+
+            <li>🤖 ATS Score</li>
+
+            <li>🎯 Job Match Score</li>
+
+            <li>🔑 Resume Keywords</li>
+
+            <li>💡 AI Suggestions</li>
+
+            <li>📝 Resume Summary</li>
+
+            <li>📊 Resume Strength Analysis</li>
+
+            <li>📄 Downloadable PDF Report</li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}
+Error - AI Resume Analyzer
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="card error-card">
+
+        <h1>⚠️ Something Went Wrong</h1>
+
+        <hr>
+
+        <p>
+            We couldn't analyze your resume.
+        </p>
+
+        {% if message %}
+
+            <p>
+                {{ message }}
+            </p>
+
+        {% else %}
+
+            <p>
+                Please check your PDF and try again.
+            </p>
+
+        {% endif %}
+
+        <br>
+
+        <a href="/">
+            🏠 Back to Home
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

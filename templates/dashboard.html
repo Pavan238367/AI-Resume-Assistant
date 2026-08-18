@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block title %}
+Resume Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1>📊 Resume Analytics Dashboard</h1>
+
+    <hr>
+
+
+    <!-- Total Resumes -->
+
+    <div class="card">
+
+        <h2>📄 Total Resumes Analyzed</h2>
+
+        <h1 class="score">
+            {{ total_resumes }}
+        </h1>
+
+    </div>
+
+
+    <!-- Average Resume Score -->
+
+    <div class="card">
+
+        <h2>⭐ Average Resume Score</h2>
+
+        <h1 class="score">
+            {{ average_resume_score }}%
+        </h1>
+
+    </div>
+
+
+    <!-- Average ATS Score -->
+
+    <div class="card">
+
+        <h2>🤖 Average ATS Score</h2>
+
+        <h1 class="score">
+            {{ average_ats_score }}%
+        </h1>
+
+    </div>
+
+
+    <!-- Average Job Match -->
+
+    <div class="card">
+
+        <h2>🎯 Average Job Match</h2>
+
+        <h1 class="score">
+            {{ average_job_match }}%
+        </h1>
+
+    </div>
+
+
+    <hr>
+
+
+    <!-- Performance Overview -->
+
+    <div class="card">
+
+        <h2>📈 Performance Overview</h2>
+
+
+        <!-- Resume Score -->
+
+        <h3>
+            ⭐ Resume Score
+        </h3>
+
+        <p>
+            {{ average_resume_score }}%
+        </p>
+
+        <div class="progress-container">
+
+            <div class="progress-bar dashboard-bar"
+                 data-value="{{ average_resume_score }}">
+            </div>
+
+        </div>
+
+
+        <!-- ATS Score -->
+
+        <h3>
+            🤖 ATS Score
+        </h3>
+
+        <p>
+            {{ average_ats_score }}%
+        </p>
+
+        <div class="progress-container">
+
+            <div class="progress-bar dashboard-bar"
+                 data-value="{{ average_ats_score }}">
+            </div>
+
+        </div>
+
+
+        <!-- Job Match -->
+
+        <h3>
+            🎯 Job Match
+        </h3>
+
+        <p>
+            {{ average_job_match }}%
+        </p>
+
+        <div class="progress-container">
+
+            <div class="progress-bar dashboard-bar"
+                 data-value="{{ average_job_match }}">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <hr>
+
+
+<!-- Dashboard Progress Bars -->
+
+<script>
+
+    const dashboardBars =
+        document.querySelectorAll(".dashboard-bar");
+
+
+    dashboardBars.forEach(function(bar) {
+
+        const value =
+            Number(bar.getAttribute("data-value"));
+
+        bar.style.width =
+            value + "%";
+
+    });
+
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}
+Resume History
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1>📋 Resume Analysis History</h1>
+
+    <hr>
+
+
+    {% if records %}
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Name</th>
+
+                    <th>Email</th>
+
+                    <th>Resume Score</th>
+
+                    <th>ATS Score</th>
+
+                    <th>Job Match</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for record in records %}
+
+                    <tr>
+
+                        <td>
+                            {{ record[0] }}
+                        </td>
+
+                        <td>
+                            {{ record[1] }}
+                        </td>
+
+                        <td>
+                            {{ record[2] }}%
+                        </td>
+
+                        <td>
+                            {{ record[3] }}%
+                        </td>
+
+                        <td>
+                            {{ record[4] }}%
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    {% else %}
+
+        <div class="card">
+
+            <h2>📭 No History Found</h2>
+
+            <p>
+                Analyze a resume to see it here.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+
+    <hr>
+
+
+<div class="navigation">
+
+    <a href="/">
+        🏠 Analyze New Resume
+    </a>
+
+    <a href="/history">
+        📋 View History
+    </a>
+
+    <a href="/dashboard">
+        📊 Dashboard
+    </a>
+
+    <a href="/compare">
+        ⚖️ Compare Resumes
+    </a>
+
+</div>
+
+</div>
+
+{% endblock %}

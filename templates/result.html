@@ -1,0 +1,601 @@
+{% extends "base.html" %}
+
+{% block title %}
+Resume Analysis Result
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1>🤖 AI Resume Analyzer</h1>
+
+    <hr>
+
+
+    <!-- Resume Summary -->
+
+    <div class="card">
+
+        <h2>📝 Resume Summary</h2>
+
+        <p>
+            <strong>👤 Name:</strong>
+            {{ resume_summary.name }}
+        </p>
+
+        <p>
+            <strong>💻 Skills:</strong>
+            {{ resume_summary.skills }}
+        </p>
+
+        <p>
+            <strong>🎓 Education:</strong>
+            {{ resume_summary.education }}
+        </p>
+
+        <p>
+            <strong>💼 Experience:</strong>
+            {{ resume_summary.experience }}
+        </p>
+
+        <p>
+            <strong>⭐ Resume Score:</strong>
+            {{ resume_summary.resume_score }}/100
+        </p>
+
+        <p>
+            <strong>🤖 ATS Score:</strong>
+            {{ resume_summary.ats_score }}%
+        </p>
+
+        <p>
+            <strong>🎯 Job Match:</strong>
+            {{ resume_summary.match_score }}%
+        </p>
+
+    </div>
+
+
+    <hr>
+<hr>
+
+<!-- Resume Score Breakdown -->
+
+<div class="card">
+
+    <h2>📊 Resume Score Breakdown</h2>
+
+    {% for item in score_breakdown %}
+
+        <div class="score-breakdown-item">
+
+            <h3>
+                {{ item.section }}
+            </h3>
+
+            <p>
+                {{ item.score }}/{{ item.max_score }}
+            </p>
+
+            <div class="progress-container">
+
+                <div
+                    class="progress-bar score-bar"
+                    data-score="{{ item.score }}"
+                    data-max="{{ item.max_score }}">
+                </div>
+
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+
+    <!-- Resume Strength Breakdown -->
+
+    <div class="card">
+
+        <h2>📊 Resume Strength Breakdown</h2>
+
+
+        <!-- Contact -->
+
+        <h3>📧 Contact Information</h3>
+
+        <p>
+            {{ contact_strength }}%
+        </p>
+
+        <div class="progress-container">
+
+            <div class="progress-bar strength-bar"
+                 data-width="{{ contact_strength }}">
+            </div>
+
+        </div>
+
+
+        <!-- Skills -->
+
+        <h3>💻 Skills</h3>
+
+        <p>
+            {{ skills_strength }}%
+        </p>
+
+        <div class="progress-container">
+
+            <div class="progress-bar strength-bar"
+                 data-width="{{ skills_strength }}">
+            </div>
+
+        </div>
+
+
+        <!-- Education -->
+
+        <h3>🎓 Education</h3>
+
+        <p>
+            {{ education_strength }}%
+        </p>
+
+        <div class="progress-container">
+
+            <div class="progress-bar strength-bar"
+                 data-width="{{ education_strength }}">
+            </div>
+
+        </div>
+
+
+        <!-- Experience -->
+
+        <h3>💼 Experience</h3>
+
+        <p>
+            {{ experience_strength }}%
+        </p>
+
+        <div class="progress-container">
+
+            <div class="progress-bar strength-bar"
+                 data-width="{{ experience_strength }}">
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <hr>
+
+
+    <!-- Name -->
+
+    <div class="card">
+
+        <h2>👤 Name</h2>
+
+        <p>{{ name }}</p>
+
+    </div>
+
+
+    <hr>
+
+
+    <!-- Email -->
+
+    <div class="card">
+
+        <h2>📧 Email</h2>
+
+        <p>{{ email }}</p>
+
+    </div>
+
+
+    <hr>
+
+
+    <!-- Phone -->
+
+    <div class="card">
+
+        <h2>📱 Phone</h2>
+
+        <p>{{ phone }}</p>
+
+    </div>
+
+
+    <hr>
+
+
+    <!-- Skills -->
+
+    <div class="card">
+
+        <h2>💻 Skills</h2>
+
+        {% if skills %}
+
+            <ul>
+
+                {% for skill in skills %}
+
+                    <li>{{ skill }}</li>
+
+                {% endfor %}
+
+            </ul>
+
+        {% else %}
+
+            <p>No Skills Found</p>
+
+        {% endif %}
+
+    </div>
+
+
+    <hr>
+
+
+    <!-- Resume Keywords -->
+
+    <div class="card">
+
+        <h2>🔑 Resume Keywords</h2>
+
+        {% if keywords %}
+
+            <ul>
+
+                {% for keyword in keywords %}
+
+                    <li>{{ keyword }}</li>
+
+                {% endfor %}
+
+            </ul>
+
+            <p>
+                <strong>Keywords Found:</strong>
+                {{ keywords|length }}
+            </p>
+
+        {% else %}
+
+            <p>No important keywords found.</p>
+
+        {% endif %}
+
+    </div>
+
+
+    <hr>
+
+
+    <!-- Education -->
+
+    <div class="card">
+
+        <h2>🎓 Education</h2>
+
+        {% if education %}
+
+            <ul>
+
+                {% for edu in education %}
+
+                    <li>{{ edu }}</li>
+
+                {% endfor %}
+
+            </ul>
+
+        {% else %}
+
+            <p>No Education Found</p>
+
+        {% endif %}
+
+    </div>
+
+
+    <hr>
+
+
+    <!-- Experience -->
+
+    <div class="card">
+
+        <h2>💼 Experience</h2>
+
+        {% if experience %}
+
+            <ul>
+
+                {% for exp in experience %}
+
+                    <li>{{ exp }}</li>
+
+                {% endfor %}
+
+            </ul>
+
+        {% else %}
+
+            <p>No Experience Found</p>
+
+        {% endif %}
+
+    </div>
+
+
+    <hr>
+
+
+    <!-- Resume Score -->
+
+    <div class="card">
+
+        <h2>⭐ Resume Score</h2>
+
+        <h1 class="score">
+            {{ score }}/100
+        </h1>
+
+        <h3 class="rating">
+            {{ rating }}
+        </h3>
+
+    </div>
+
+
+    <hr>
+
+
+    <!-- AI Suggestions -->
+
+    <div class="card">
+
+        <h2>💡 AI Suggestions</h2>
+
+        {% if suggestions %}
+
+            <ul>
+
+                {% for suggestion in suggestions %}
+
+                    <li>{{ suggestion }}</li>
+
+                {% endfor %}
+
+            </ul>
+
+        {% else %}
+
+            <p>
+                🎉 Excellent Resume! No Suggestions.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <hr>
+
+
+    <!-- Resume Improvement -->
+
+    <div class="card improvement-card">
+
+        <h2>🛠️ Resume Improvement Analysis</h2>
+
+        {% if improvements %}
+
+            {% for improvement in improvements %}
+
+                <div class="improvement-item">
+
+                    <span class="improvement-icon">
+                        ⚠️
+                    </span>
+
+                    <p>
+                        {{ improvement }}
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="improvement-item">
+
+                <span class="improvement-icon">
+                    🎉
+                </span>
+
+                <p>
+                    Your resume looks strong!
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <hr>
+
+
+    <!-- ATS Score -->
+
+    <div class="card">
+
+        <h2>📊 ATS Score</h2>
+
+        <h1 class="score">
+            {{ ats_score }}%
+        </h1>
+
+        <div class="progress-container">
+
+            <progress
+                value="{{ ats_score }}"
+                max="100"
+                class="{{ color }}">
+            </progress>
+
+        </div>
+
+        <h3 class="rating">
+            {{ strength }}
+        </h3>
+
+    </div>
+
+
+    <hr>
+
+
+    <!-- Job Match -->
+
+    <div class="card">
+
+        <h2>🎯 Job Match Score</h2>
+
+        <h1 class="score">
+            {{ match_score }}%
+        </h1>
+
+
+        <h3>📋 Required Keywords</h3>
+
+        {% if required_keywords %}
+
+            <ul>
+
+                {% for keyword in required_keywords %}
+
+                    <li>{{ keyword }}</li>
+
+                {% endfor %}
+
+            </ul>
+
+        {% else %}
+
+            <p>
+                No job keywords detected.
+            </p>
+
+        {% endif %}
+
+
+        <h3>✅ Matching Keywords</h3>
+
+        {% if matched_keywords %}
+
+            <ul>
+
+                {% for keyword in matched_keywords %}
+
+                    <li>{{ keyword }}</li>
+
+                {% endfor %}
+
+            </ul>
+
+        {% else %}
+
+            <p>
+                No matching keywords found.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+</div>
+
+
+
+<hr>
+
+<!-- Download Report -->
+
+<div class="card">
+
+    <h2>📥 Download Report</h2>
+
+    <p>
+        Download your resume analysis report as a PDF.
+    </p>
+
+    <a href="/download-report">
+
+        <button type="button">
+            📄 Download PDF Report
+        </button>
+
+    </a>
+
+</div>
+
+<!-- Progress Bar Script -->
+
+<script>
+
+    const bars = document.querySelectorAll(".strength-bar");
+
+    bars.forEach(function(bar) {
+
+        const width = bar.getAttribute("data-width");
+
+        bar.style.width = width + "%";
+
+    });
+
+</script>
+<script>
+
+    const scoreBars =
+        document.querySelectorAll(".score-bar");
+
+
+    scoreBars.forEach(function(bar) {
+
+        const score =
+            Number(bar.getAttribute("data-score"));
+
+        const maxScore =
+            Number(bar.getAttribute("data-max"));
+
+
+        if (maxScore > 0) {
+
+            const percentage =
+                (score / maxScore) * 100;
+
+            bar.style.width =
+                percentage + "%";
+        }
+
+    });
+
+</script>
+
+{% endblock %}

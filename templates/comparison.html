@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block title %}
+Resume Comparison
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1>📊 Resume Comparison</h1>
+
+    <hr>
+
+
+    <div class="card">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Metric</th>
+
+                    <th>Resume 1</th>
+
+                    <th>Resume 2</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td>⭐ Resume Score</td>
+
+                    <td>
+                        {{ comparison.resume1.resume_score }}%
+                    </td>
+
+                    <td>
+                        {{ comparison.resume2.resume_score }}%
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>🤖 ATS Score</td>
+
+                    <td>
+                        {{ comparison.resume1.ats_score }}%
+                    </td>
+
+                    <td>
+                        {{ comparison.resume2.ats_score }}%
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>🎯 Job Match</td>
+
+                    <td>
+                        {{ comparison.resume1.match_score }}%
+                    </td>
+
+                    <td>
+                        {{ comparison.resume2.match_score }}%
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <hr>
+
+
+    <div class="card">
+
+        <h2>📈 Differences</h2>
+
+        <p>
+            ⭐ Resume Score Difference:
+            {{ comparison.score_difference }}%
+        </p>
+
+        <p>
+            🤖 ATS Score Difference:
+            {{ comparison.ats_difference }}%
+        </p>
+
+        <p>
+            🎯 Job Match Difference:
+            {{ comparison.match_difference }}%
+        </p>
+
+    </div>
+
+<hr>
+
+ <hr>
+
+<div class="card">
+
+    <h2>🏆 Recommended Resume</h2>
+
+    <h1 class="score">
+        {{ comparison.winner }}
+    </h1>
+
+    {% if comparison.winner != "Both Resumes" %}
+
+        <h3 class="rating">
+            Overall Performance:
+            {{ comparison.winner_score }}%
+        </h3>
+
+        <p>
+            ✅ This resume has the better overall
+            performance across Resume Score,
+            ATS Score and Job Match.
+        </p>
+
+    {% else %}
+
+        <h3 class="rating">
+            Overall Performance:
+            {{ comparison.winner_score }}%
+        </h3>
+
+        <p>
+            🤝 Both resumes have the same
+            overall performance.
+        </p>
+
+    {% endif %}
+
+</div>  
+
+
+    
+
+{% endblock %}
